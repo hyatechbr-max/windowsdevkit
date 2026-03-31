@@ -1,51 +1,53 @@
+
+
 # WindowsDevKit 🪟
 
-**Cansado de comandos Linux que não funcionam no Windows?**
+**Tired of Linux commands that don't work on Windows?**
 
-Cada tutorial assume que usas Linux ou Mac. `chmod +x`, `export PATH=...`, `rm -rf` — nada disto funciona no PowerShell. O WindowsDevKit detecta esses comandos automaticamente e mostra-te a solução Windows sem teres de pesquisar.
-
----
-
-## Como funciona
-
-**No terminal** — escreves um comando Linux, o Windows diz "not recognized", e aparece uma notificação imediata com o equivalente Windows e um botão para copiar.
-
-**No editor** — abres qualquer ficheiro com comandos Linux e eles ficam sublinhados a vermelho com a solução disponível ao lado.
+Every tutorial assumes you're on Linux or Mac. `chmod +x`, `export PATH=...`, `rm -rf` — none of it works in PowerShell. WindowsDevKit detects those commands automatically and shows you the Windows equivalent without having to Google it.
 
 ---
 
-## Instalação (beta)
+## How it works
 
-A extensão está em fase de testes. Para instalar agora:
+**In the terminal** — you run a Linux command, Windows says "not recognized", and a notification appears instantly with the Windows equivalent and a copy button.
 
-**Precisas de ter instalado:**
+**In the editor** — open any file with Linux commands and they get underlined in red with the fix available right there.
+
+---
+
+## Installation (beta)
+
+The extension is currently in beta. To install it now:
+
+**Requirements:**
 - [VSCode](https://code.visualstudio.com/)
-- [Node.js](https://nodejs.org/) — versão LTS
+- [Node.js](https://nodejs.org/) — LTS version
 
-**Passos:**
+**Steps:**
 
-1. Descarrega ou clona este repositório
+1. Clone this repository
 ```
-git clone https://github.com/[o-teu-username]/windowsdevkit
-```
-
-2. Abre a pasta no VSCode
-```
-File → Open Folder → escolhe a pasta windowsdevkit
+git clone https://github.com/[your-username]/windowsdevkit
 ```
 
-3. Carrega **F5** — abre uma janela nova com a extensão activa
-
-4. Testa no terminal da janela nova:
+2. Open the folder in VSCode
 ```
-chmod +x teste.sh
+File → Open Folder → select the windowsdevkit folder
 ```
 
-Deves ver a notificação aparecer automaticamente.
+3. Press **F5** — a new window opens with the extension active
+
+4. Test it in the terminal of the new window:
+```
+chmod +x test.sh
+```
+
+You should see the notification appear automatically.
 
 ---
 
-## O que detecta
+## What it detects
 
 | Linux / Mac | Windows (PowerShell) |
 |-------------|---------------------|
@@ -60,41 +62,41 @@ Deves ver a notificação aparecer automaticamente.
 | `apt install curl` | `winget install curl` |
 | `kill 1234` | `taskkill /PID 1234` |
 
-E mais 40+ comandos na base de dados.
+40+ commands in the database and growing.
 
 ---
 
-## Para vibe coders — Cursor e Windsurf
+## For vibe coders — Cursor and Windsurf
 
-Se usas Cursor ou Windsurf, temos ficheiros de regras prontos que fazem a IA gerar código Windows directamente, sem teres de corrigir nada depois.
+If you use Cursor or Windsurf, we have ready-made rules files that make the AI generate Windows-compatible code directly — no fixing needed afterwards.
 
-- Descarrega `.cursorrules` → mete na raiz do projecto → o Cursor passa a gerar PowerShell automaticamente
-- Descarrega `.windsurfrules` → mesmo resultado no Windsurf
+- Download `.cursorrules` → drop it in your project root → Cursor now generates PowerShell automatically
+- Download `.windsurfrules` → same result in Windsurf
 
 ---
 
 ## Roadmap
 
-- [ ] Publicação na loja do VSCode
-- [ ] Ficheiro `.vsix` para instalação directa sem precisar de código
-- [ ] Extensão de browser (funciona em qualquer tutorial online)
-- [ ] Suporte para GitHub Copilot instructions
+- [ ] VSCode Marketplace publication
+- [ ] `.vsix` file for one-click install without needing the source code
+- [ ] Browser extension (works on any tutorial website)
+- [ ] GitHub Copilot instructions support
 
 ---
 
 ## Feedback
 
-Esta extensão está em beta e preciso do teu feedback honesto.
+This extension is in beta and I need your honest feedback.
 
-Se encontrares um comando em falta ou algo que não funcione:
-- Abre uma [issue](https://github.com/[o-teu-username]/windowsdevkit/issues)
-
----
-
-## Licença
-
-MIT — podes usar, modificar e distribuir com crédito ao projecto original.
+If you find a missing command or something that doesn't work as expected:
+- Open an [issue](https://github.com/[your-username]/windowsdevkit/issues)
 
 ---
 
-*Feito para programadores Windows que estão fartos de ser tratados como cidadãos de segunda classe no mundo do desenvolvimento.*
+## License
+
+MIT — free to use, modify and distribute with credit to the original project.
+
+---
+
+*Built for Windows developers who are tired of being second-class citizens in the dev world.*
