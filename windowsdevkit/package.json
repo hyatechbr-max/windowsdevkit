@@ -1,0 +1,84 @@
+{
+  "name": "windowsdevkit",
+  "displayName": "WindowsDevKit",
+  "description": "Detecta comandos Linux/Mac e sugere o equivalente Windows. Nunca mais perca horas a adaptar tutoriais.",
+  "version": "1.0.0",
+  "publisher": "windowsdevkit",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "Linters"
+  ],
+  "keywords": [
+    "windows",
+    "linux",
+    "terminal",
+    "commands",
+    "developer tools",
+    "powershell",
+    "compatibility"
+  ],
+  "icon": "icon.png",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "windowsdevkit.traduzir",
+        "title": "WindowsDevKit: Traduzir comandos para Windows",
+        "category": "WindowsDevKit"
+      },
+      {
+        "command": "windowsdevkit.verificar",
+        "title": "WindowsDevKit: Verificar ficheiro atual",
+        "category": "WindowsDevKit"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "windowsdevkit.traduzir",
+          "group": "windowsdevkit",
+          "when": "editorIsOpen"
+        },
+        {
+          "command": "windowsdevkit.verificar",
+          "group": "windowsdevkit",
+          "when": "editorIsOpen"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "windowsdevkit.traduzir",
+        "key": "ctrl+shift+w",
+        "when": "editorIsOpen"
+      }
+    ],
+    "configuration": {
+      "title": "WindowsDevKit",
+      "properties": {
+        "windowsdevkit.ativarDecoracoes": {
+          "type": "boolean",
+          "default": true,
+          "description": "Sublinhar automaticamente comandos Linux detetados"
+        },
+        "windowsdevkit.verificarAoAbrir": {
+          "type": "boolean",
+          "default": true,
+          "description": "Verificar automaticamente ao abrir um ficheiro"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^2.22.0"
+  }
+}
