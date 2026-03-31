@@ -1,40 +1,33 @@
 {
   "name": "windowsdevkit",
   "displayName": "WindowsDevKit",
-  "description": "Detecta comandos Linux/Mac e sugere o equivalente Windows. Nunca mais perca horas a adaptar tutoriais.",
-  "version": "1.0.0",
+  "description": "Detects Linux/Mac commands in the terminal and editor and shows the Windows equivalent automatically.",
+  "version": "1.1.0",
   "publisher": "windowsdevkit",
   "engines": {
-    "vscode": "^1.74.0"
+    "vscode": "^1.93.0"
   },
-  "categories": [
-    "Other",
-    "Linters"
-  ],
-  "keywords": [
-    "windows",
-    "linux",
-    "terminal",
-    "commands",
-    "developer tools",
-    "powershell",
-    "compatibility"
-  ],
+  "categories": ["Other", "Linters"],
+  "keywords": ["windows", "linux", "terminal", "commands", "developer tools", "powershell", "compatibility"],
   "icon": "icon.png",
-  "activationEvents": [
-    "onStartupFinished"
-  ],
+  "activationEvents": ["onStartupFinished"],
+  "enabledApiProposals": ["terminalDataWriteEvent"],
   "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "windowsdevkit.traduzir",
-        "title": "WindowsDevKit: Traduzir comandos para Windows",
+        "title": "WindowsDevKit: Translate commands to Windows",
         "category": "WindowsDevKit"
       },
       {
         "command": "windowsdevkit.verificar",
-        "title": "WindowsDevKit: Verificar ficheiro atual",
+        "title": "WindowsDevKit: Check current file",
+        "category": "WindowsDevKit"
+      },
+      {
+        "command": "windowsdevkit.historico",
+        "title": "WindowsDevKit: Show terminal history",
         "category": "WindowsDevKit"
       }
     ],
@@ -62,15 +55,15 @@
     "configuration": {
       "title": "WindowsDevKit",
       "properties": {
-        "windowsdevkit.ativarDecoracoes": {
+        "windowsdevkit.enableDecorations": {
           "type": "boolean",
           "default": true,
-          "description": "Sublinhar automaticamente comandos Linux detetados"
+          "description": "Automatically underline detected Linux commands in the editor"
         },
-        "windowsdevkit.verificarAoAbrir": {
+        "windowsdevkit.monitorTerminal": {
           "type": "boolean",
           "default": true,
-          "description": "Verificar automaticamente ao abrir um ficheiro"
+          "description": "Monitor the terminal and alert when a Linux command fails"
         }
       }
     }
