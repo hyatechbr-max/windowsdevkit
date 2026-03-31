@@ -1,0 +1,101 @@
+# WindowsDevKit — Windsurf Rules for Windows Developers
+# Drop this file in the root of any project to make Windsurf always generate Windows-compatible code.
+# github.com/[your-username]/windowsdevkit
+
+## ENVIRONMENT
+- OS: Windows 10/11
+- Shell: PowerShell 7+ (default) or Command Prompt
+- Terminal: Windows Terminal
+- Package manager: winget, chocolatey, or scoop (NOT brew, apt, yum)
+- Path separator: backslash \ (NOT forward slash /)
+
+## CRITICAL RULES — ALWAYS FOLLOW
+
+### Never generate these Linux/Mac commands:
+- chmod, chown, chgrp → use icacls or Set-Acl instead
+- export VAR=value → use $env:VAR = "value" (PowerShell) or set VAR=value (CMD)
+- rm -rf → use Remove-Item -Recurse -Force
+- cp, mv → use Copy-Item, Move-Item
+- ls → use Get-ChildItem or dir
+- grep → use Select-String
+- cat → use Get-Content
+- touch filename → use New-Item filename -type file
+- which → use Get-Command
+- curl (Linux flags) → use Invoke-WebRequest or curl.exe (Windows built-in)
+- sudo → Windows uses "Run as Administrator" — flag this explicitly
+- ./script.sh → use .\script.ps1 or bash script.sh (if WSL available)
+- echo $VAR → use echo $env:VAR (PowerShell)
+- && (chaining) → use ; in PowerShell or & in CMD
+
+### Shell scripts:
+- Never generate .sh files as the primary script
+- Generate .ps1 (PowerShell) files instead
+- If .sh is required (for CI/CD cross-platform), generate BOTH .sh and .ps1 versions
+
+### Environment variables:
+- Setting: $env:VARIABLE_NAME = "value"
+- Reading: $env:VARIABLE_NAME
+- Permanent (user): [System.Environment]::SetEnvironmentVariable("VAR","value","User")
+
+### File paths:
+- Use $env:USERPROFILE instead of ~ or $HOME when possible
+- Use Join-Path for path construction
+- Example: Join-Path $env:USERPROFILE "Documents\project"
+
+### Package installation:
+- Node.js: use nvm-windows (NOT nvm for Linux)
+- Python: use py launcher (py -3.11) NOT python3
+- Always mention if a tool requires "Run as Administrator"
+
+### Docker:
+- Use Docker Desktop for Windows
+- Volumes: use Windows paths "C:\Users\name\project:/app"
+- Line endings: add .gitattributes with "* text=auto eol=lf" for Linux containers
+
+### Git:
+- git config core.autocrlf true (for Windows line endings)
+
+## WHEN GENERATING CODE
+
+1. If the task involves shell commands → generate PowerShell by default
+2. If the task involves file permissions → use Windows ACL approach
+3. If the task involves environment setup → show Windows-specific steps
+4. If cross-platform is needed → generate separate Windows and Linux/Mac sections clearly labeled
+5. Always test mentally: "would this run in PowerShell on Windows 11 without WSL?"
+
+## COMMON PATTERNS — USE THESE
+
+### Start a dev server:
+```powershell
+$env:NODE_ENV = "development"
+npm run dev
+```
+
+### Set multiple env vars:
+```powershell
+$env:DATABASE_URL = "postgresql://localhost/mydb"
+$env:SECRET_KEY = "your-secret"
+npm start
+```
+
+### Create project structure:
+```powershell
+New-Item -ItemType Directory -Path "src", "src\components", "src\utils", "public"
+New-Item -ItemType File -Path "src\index.js", ".env", ".gitignore"
+```
+
+### Kill process on port:
+```powershell
+$proc = Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue
+if ($proc) { Stop-Process -Id $proc.OwningProcess -Force }
+```
+
+### Check if port is in use:
+```powershell
+netstat -ano | findstr :3000
+```
+
+## NOTES FOR AI
+- When unsure if user has WSL: ask before suggesting Linux commands
+- When a tool truly has no Windows equivalent: say so clearly and suggest the closest alternative
+- Never silently assume the user has WSL installed
