@@ -1,8 +1,15 @@
 # WindowsDevKit 🪟
 
-**Tired of Linux commands that don't work on Windows?**
+> **Every tutorial assumes you're on Linux or Mac. WindowsDevKit fixes that.**
 
-Every tutorial assumes you're on Linux or Mac. `chmod +x`, `export PATH=...`, `rm -rf` — none of it works in PowerShell. WindowsDevKit detects those commands automatically and shows you the Windows equivalent without having to Google it.
+`chmod +x`, `export PATH=...`, `rm -rf` — none of it works in PowerShell. WindowsDevKit detects Linux/Mac commands automatically and shows you the Windows equivalent **before you even have to Google it**.
+
+![Demo](assets/demo.gif)
+
+[![Version](https://img.shields.io/badge/version-0.1.0--beta-blue)](https://github.com/hyatechbr-max/windowsdevkit)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![VSCode](https://img.shields.io/badge/VSCode-1.63%2B-informational)](https://code.visualstudio.com/)
+[![Status](https://img.shields.io/badge/status-beta-orange)](https://github.com/hyatechbr-max/windowsdevkit/issues)
 
 ---
 
@@ -10,45 +17,42 @@ Every tutorial assumes you're on Linux or Mac. `chmod +x`, `export PATH=...`, `r
 
 **In the terminal** — you run a Linux command, Windows says "not recognized", and a notification appears instantly with the Windows equivalent and a copy button.
 
-**In the editor** — open any file with Linux commands and they get underlined in red with the fix available right there.
+![Terminal detection](assets/terminal.png)
+
+**In the editor** — open any file with Linux commands and they get underlined in red, with the fix available right there via hover or quick action.
+
+![Editor detection](assets/editor.png)
 
 ---
 
 ## Installation (beta)
 
-The extension is currently in beta. To install it now:
+> ⚠️ The `.vsix` one-click installer is coming soon. For now, run from source in under 2 minutes.
 
-**Requirements:**
-- [VSCode](https://code.visualstudio.com/)
-- [Node.js](https://nodejs.org/) — LTS version
+**Requirements:** [VSCode](https://code.visualstudio.com/) · [Node.js LTS](https://nodejs.org/)
 
-**Steps:**
-
-1. Clone this repository
-```
-git clone https://github.com/[your-username]/windowsdevkit
+```bash
+git clone https://github.com/hyatechbr-max/windowsdevkit
 ```
 
-2. Open the folder in VSCode
-```
-File → Open Folder → select the windowsdevkit folder
-```
+1. Open the folder in VSCode: `File → Open Folder → select the windowsdevkit folder`
+2. Press **F5** — a new Extension Development Host window opens with the extension active
+3. In the new window's terminal, test it:
 
-3. Press **F5** — a new window opens with the extension active
-
-4. Test it in the terminal of the new window:
-```
+```bash
 chmod +x test.sh
 ```
 
-You should see the notification appear automatically.
+You should see a notification appear automatically with the Windows equivalent.
 
 ---
 
 ## What it detects
 
+40+ commands in the database and growing.
+
 | Linux / Mac | Windows (PowerShell) |
-|-------------|---------------------|
+|---|---|
 | `chmod +x file.sh` | `icacls file.ps1 /grant Everyone:RX` |
 | `export NODE_ENV=production` | `$env:NODE_ENV = "production"` |
 | `rm -rf node_modules` | `rmdir /s /q node_modules` |
@@ -60,23 +64,21 @@ You should see the notification appear automatically.
 | `apt install curl` | `winget install curl` |
 | `kill 1234` | `taskkill /PID 1234` |
 
-40+ commands in the database and growing.
-
 ---
 
 ## For vibe coders — Cursor and Windsurf
 
-If you use Cursor or Windsurf, we have ready-made rules files that make the AI generate Windows-compatible code directly — no fixing needed afterwards.
+If you use Cursor or Windsurf, we have ready-made rules files that make the AI generate Windows-compatible code **directly** — no fixing needed afterwards.
 
-- Download `.cursorrules` → drop it in your project root → Cursor now generates PowerShell automatically
-- Download `.windsurfrules` → same result in Windsurf
+- **[Download `.cursorrules`]()** → drop it in your project root → Cursor now generates PowerShell automatically
+- **[Download `.windsurfrules`]()** → same result in Windsurf
 
 ---
 
 ## Roadmap
 
 - [ ] VSCode Marketplace publication
-- [ ] `.vsix` file for one-click install without needing the source code
+- [ ] `.vsix` file for one-click install (no source code needed)
 - [ ] Browser extension (works on any tutorial website)
 - [ ] GitHub Copilot instructions support
 
@@ -86,8 +88,7 @@ If you use Cursor or Windsurf, we have ready-made rules files that make the AI g
 
 This extension is in beta and I need your honest feedback.
 
-If you find a missing command or something that doesn't work as expected:
-- Open an [issue](https://github.com/[your-username]/windowsdevkit/issues)
+If you find a missing command or something that doesn't work as expected, **[open an issue](https://github.com/hyatechbr-max/windowsdevkit/issues)** — every report directly shapes what gets built next.
 
 ---
 
